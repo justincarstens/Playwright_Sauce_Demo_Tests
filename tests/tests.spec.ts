@@ -57,6 +57,13 @@ test.describe('Standard  User', () => {
     await page.locator('[data-test="login-button"]').click();
   });
 
+  test('should be able to log out', async ({ page }) => {
+    await page.getByRole('button', { name: 'Open Menu' }).click();
+    await page.locator('#logout_sidebar_link').click();
+
+    expect(await page.url()).toBe('https://www.saucedemo.com/');
+  })
+  
   test('should be able to add an item to cart', async ({ page }) => {
     await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
     await page.locator('#shopping_cart_container a').click();
