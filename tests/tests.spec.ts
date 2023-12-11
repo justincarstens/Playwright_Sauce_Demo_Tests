@@ -78,6 +78,22 @@ test.describe('Standard  User', () => {
   });
 });
 
+test.describe('Locked Out User', () => {
+  test('should display error message when logging in and be able to close error message button', async ({ page }) => {
+    const usernameBox = page.getByPlaceholder('Username');
+    const passwordBox = page.getByPlaceholder('Password');
+  
+    await usernameBox.fill('locked_out_user');
+    await passwordBox.fill(password);
+  
+    await page.locator('[data-test="login-button"]').click();
+
+    expect(await page.locator('h3:has-text("Epic sadface: Sorry, this user has been locked out.")'));
+
+    expect(await page.locator('.error-button').click());  
+  });
+});
+
 /**test('template', async ({ page }) => {
 
 });*/
