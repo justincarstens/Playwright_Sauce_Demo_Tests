@@ -71,32 +71,6 @@ test.describe('Standard  User', () => {
   });
 });
 
-test.describe(' User', () => {
-
-  test.beforeEach(async ({ page }) => {
-    const usernameBox = page.getByPlaceholder('Username');
-    const passwordBox = page.getByPlaceholder('Password');
-  
-    await usernameBox.fill(username);
-    await passwordBox.fill(password);
-  
-    await page.locator('[data-test="login-button"]').click();
-  });
-
-  test('should cart', async ({ page }) => {
-    await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
-    await page.locator('#shopping_cart_container a').click();
-
-    expect(await page.locator('.cart_item').count()).toBeGreaterThan(0); 
-  });
-
-  test('shouldrt icon', async ({ page }) => {
-    await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
-    
-    expect (Number(await page.locator('.shopping_cart_badge').textContent())).toBeGreaterThan(0);  
-  });
-});
-
 /**test('template', async ({ page }) => {
 
 });*/
